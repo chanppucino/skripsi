@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AnnouncementsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +38,7 @@ Route::get('/admin/announcements/{id}', 'App\Http\Controllers\announcementsContr
 Route::get('/admin/announcements/{id}/edit', 'App\Http\Controllers\announcementsController@edit');
 Route::get('/admin/announcements/{id}/update', 'App\Http\Controllers\announcementsController@update')->name('announcements.update');
 Route::delete('/admin/announcements/{id}', 'App\Http\Controllers\announcementsController@destroy')->name('announcements.destroy');
-Route::post('store', 'App\Http\Controllers\announcementsController@store')->name('announcements.store');
+Route::post('admin/store', [AnnouncementsController::class, 'store'])->name('announcements.store');
 /*
 |
 |--------------------------------------------------------------------------
