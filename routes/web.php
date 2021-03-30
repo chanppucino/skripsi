@@ -56,4 +56,3 @@ Route::get('/admin/news/index', 'App\Http\Controllers\newsController@index');
 Route::get('/admin/schedules/index', 'App\Http\Controllers\schedulesController@index');
 Route::get('/admin/schedules/create', 'App\Http\Controllers\schedulesController@create');
 Route::post('store', 'App\Http\Controllers\schedulesController@store')->name('schedules.store');
-
