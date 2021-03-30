@@ -79,12 +79,12 @@ class AnnouncementsController extends Controller
 
             $announcements=new Announcements;
 
-            $announcements->name=Input::get('name');
-            $announcements->nim=Input::get('nim');
-            $announcements->date=Input::get('date');
-            $announcements->date=Input::get('time');
+            $announcements->name=$request->name;
+            $announcements->nim=$request->nim;
+            $announcements->date=$request->date;
+            $announcements->time=$request->time;
             $announcements->image=$image;
-            $announcements->contents=Input::get('contents');
+            $announcements->contents=$request->contents;
             $announcements->save();
 
             Session::flash('message','Data Berhasil Ditambah');
@@ -175,7 +175,7 @@ class AnnouncementsController extends Controller
             $announcements->name=$request->name;
             $announcements->nim=$request->nim;
             $announcements->date=$request->date;
-            $announcements->date=$request->time;
+            $announcements->time=$request->time;
             $announcements->contents=$request->contents;
             $announcements->image=$image;
             $announcements->save();
