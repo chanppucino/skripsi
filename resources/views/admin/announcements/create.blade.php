@@ -1,53 +1,56 @@
 @extends('admin/admin')
+
 @section('content')
-    <div class="row">
-        <div class="col-12">
-            {{ Form::open(['route'=>'announcements.store', 'files'=>true]) }}
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Tambah Pengumuman</h3>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Tambah Pengumuman</h3>
+            </div>
+            <form action="{{ route('announcements.store') }}" method="POST">
+                @csrf
+                <div class="card-body">
+                    @if($errors->any())
+                    @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger">
+                        {{ $error }}
                     </div>
-                    <div class="card-body">
-                        @if(!empty($errors->all()))
-                        <div class="alert alert-danger">
-                            {{ Html::ul($errors->all())}}
-                        </div>
-                        @endif
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    {{ Form::label('title', 'Judul Pengumuman') }}
-                                    {{ Form::text('title', '', ['class'=>'form-control', 'placeholder'=>'Masukkan Judul Pengumuman']) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                            {{ Form::label('subject', 'Perihal Pengumuman') }}
-                            {{ Form::text('subject', '', ['class'=>'form-control', 'placeholder'=>'Masukkan Perihal Pengumuman']) }}       
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    {{ Form::label('image', 'Gambar Pengumuman') }}
-                                    {{ Form::file('imageFile', ['class'=>'form-control']) }}        
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                {{ Form::label('contents', 'Pengumuman') }}
-                                {{ Form::textarea('contents', '', ['class'=>'form-control', 'placeholder'=>'Masukkan Pengumuman', 'rows'=>5]) }}
+                    @endforeach
+                    @endif
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Judul Pengumuman</label>
+                                <input type="text" class="form-control" placeholder="Masukkan Judul Pengumuman">
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <a href="{{ URL::to('admin/announcements/index') }}" class="btn btn-outline-info">Kembali</a>
-                        {{ Form::submit('Proses', ['class' => 'btn btn-primary pull-right']) }}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Perihal Pengumuman</label>
+                            <input type="text" class="form-control" placeholder="Masukkan Perihal Pengumuman">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Gambar Pengumuman</label>
+                                <input type="file" class="form-control" placeholder="Masukkan Perihal Pengumuman">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label>Pengumuman</label>
+                            <textarea class="form-control" placeholder="Masukkan Pengumuman" cols="30" rows="5"></textarea>
+                        </div>
                     </div>
                 </div>
-            <!-- </form> -->
-            {{ Form::close() }}
+                <div class="card-footer">
+                    <a href="{{ URL::to('admin/announcements/index') }}" class="btn btn-outline-info">Kembali</a>
+                    <button type="submit" class="btn btn-primary float-right">Proses</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
 @endsection

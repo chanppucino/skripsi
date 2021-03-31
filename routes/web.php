@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AnnouncementsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,13 +32,13 @@ Route::get('/admin', 'App\Http\Controllers\AdminController@index');
 |--------------------------------------------------------------------------
 |
 */
-Route::get('/admin/announcements/index', 'App\Http\Controllers\announcementsController@index');
-Route::get('/admin/announcements/create', 'App\Http\Controllers\announcementsController@create');
-Route::get('/admin/announcements/{id}', 'App\Http\Controllers\announcementsController@show');
-Route::get('/admin/announcements/{id}/edit', 'App\Http\Controllers\announcementsController@edit');
-Route::get('/admin/announcements/{id}/update', 'App\Http\Controllers\announcementsController@update')->name('announcements.update');
-Route::delete('/admin/announcements/{id}', 'App\Http\Controllers\announcementsController@destroy')->name('announcements.destroy');
-Route::post('store', 'App\Http\Controllers\announcementsController@store')->name('announcements.store');
+Route::get('admin/announcements/index', [announcementsController::class, 'index']);
+Route::get('admin/announcements/create', [announcementsController::class, 'create']);
+Route::get('admin/announcements/{id}', [announcementsController::class, 'show']);
+Route::get('admin/announcements/{id}/edit', [announcementsController::class, 'edit']);
+Route::get('admin/announcements/{id}/update', [announcementsController::class, 'update'])->name('announcements.update');
+Route::delete('admin/announcements/{id}', [announcementsController::class, 'destroy'])->name('announcements.destroy');
+Route::post('admin/store', [AnnouncementsController::class, 'store'])->name('announcements.store');
 /*
 |
 |--------------------------------------------------------------------------
@@ -56,4 +57,3 @@ Route::get('/admin/news/index', 'App\Http\Controllers\newsController@index');
 Route::get('/admin/schedules/index', 'App\Http\Controllers\schedulesController@index');
 Route::get('/admin/schedules/create', 'App\Http\Controllers\schedulesController@create');
 Route::post('store', 'App\Http\Controllers\schedulesController@store')->name('schedules.store');
-
